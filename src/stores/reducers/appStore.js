@@ -5,7 +5,6 @@ const initialState = {
   user: { username: '', name: '' },
   loggedIn: false,
   selectedSidebarIndex: DASHBOARD,
-  restApiBaseUrl: 'https://jsonplaceholder.typicode.com',
 };
 
 const appStore = (state = initialState, action) => {
