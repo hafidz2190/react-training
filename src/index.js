@@ -1,33 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import App from './App';
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
-import configureStore from './stores/configure-store';
-
-const store = configureStore();
 
 const rootEl = document.getElementById('root');
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  rootEl
-);
+ReactDOM.render(<App />, rootEl);
 
 if (module.hot) {
   module.hot.accept('./App', () => {
     // eslint-disable-next-line global-require
     const NextApp = require('./App').default;
-
-    ReactDOM.render(
-      <Provider store={store}>
-        <NextApp />
-      </Provider>,
-      rootEl
-    );
+    ReactDOM.render(<NextApp />, rootEl);
   });
 }
 

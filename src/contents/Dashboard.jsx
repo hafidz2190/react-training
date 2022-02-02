@@ -1,23 +1,13 @@
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-
-const mapStateToProps = (state) => ({
-  user: state.appStore.user,
-});
-
-const Dashboard = ({ user }) => (
+const Dashboard = () => (
   <div>
-    Hello,&nbsp;
-    <b>{user.name}</b>
-    !
+    Dashboard Content
   </div>
 );
 
 Dashboard.propTypes = {
-  user: PropTypes.object.isRequired,
 };
 
 Dashboard.defaultProps = {
 };
 
-export default connect(mapStateToProps, null)(Dashboard);
+export default Dashboard;
