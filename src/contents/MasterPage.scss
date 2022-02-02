@@ -1,0 +1,37 @@
+.master-page {
+  display: flex;
+  flex-direction: row;
+
+  .main-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 200px);
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 40px;
+      padding: 10px;
+      background: lightgray;
+
+      .avatar-wrapper {
+        display: flex;
+        align-items: center;
+        
+        .logout-button {
+          cursor: pointer;
+
+          &:hover {
+            color: blue;
+          }
+        }
+      }
+    }
+
+    .main-content {
+      height: calc(100vh - 80px);
+      padding: 10px;
+    }
+  }
+}
