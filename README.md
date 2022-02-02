@@ -1,5 +1,7 @@
+# react-training
+
+
 ## Features
----
 
 - Based on Create React App [react-scripts v5](https://www.npmjs.com/package/react-scripts)
 - [React v17](https://reactjs.org/)
@@ -20,8 +22,8 @@
   - [react-dnd](https://www.npmjs.com/package/react-dnd): enable to build complex drag and drop interfaces
   - [react-intl](https://www.npmjs.com/package/react-intl): internationalization
 
+
 ## Quick Start
----
 
 1. Make sure that you have Node.js v14 and npm v6 or above installed.
 2. Navigate to project root directory.
@@ -33,7 +35,6 @@
 
 
 ## Available Scripts
----
 
 In the project directory, you can run:
 
@@ -78,7 +79,6 @@ Execute linting for .jsx and .js files in src directory
 
 
 ## Learn More
----
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
