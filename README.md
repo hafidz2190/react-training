@@ -1,1 +1,1 @@
-### Chapter 1 - Redux
+### Chapter 3 - Redux
