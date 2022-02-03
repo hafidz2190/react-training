@@ -18,13 +18,13 @@
   - react hooks: useState
   - sass / scss (css preprocessor)
 - Create our own components from scratch
-  - Reusable components:
+  - Reusable components
     - TextField
     - Button
     - Header
     - Avatar
     - Sidebar
-  - Pages:
+  - Pages
     - Master Page
     - Login
     - Dashboard
@@ -47,11 +47,11 @@
               - Dashboard
             - if => Sidebar == Posts
               - Posts
-- react states:
+- react states
   - user => object { username: '', name: '' }
   - loggedIn => boolean
   - selectedSidebar => integer
-- Constants:
+- Constants
   - available users (dummy data) => check when logging in
 
 ### Chapter 3 - Redux
