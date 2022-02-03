@@ -1,6 +1,79 @@
 # react-training
 
 
+## Chapters
+
+### Chapter 0 - Boilerplate
+- Clone the repo
+- Make sure that you have Node.js v14 and npm v6 or above installed
+- `npm install`
+- `npm start`
+
+### Chapter 1 & 2 - Master Page & Login Form
+- Read this first!
+  - https://reactjs.org/tutorial/tutorial.html
+  - https://sass-lang.com/guide
+- Points need to be understood to do the components structure below (Master Page)
+  - react state & props
+  - react hooks: useState
+  - sass / scss (css preprocessor)
+- Create our own components from scratch
+  - Reusable components:
+    - TextField
+    - Button
+    - Header
+    - Avatar
+    - Sidebar
+  - Pages:
+    - Master Page
+    - Login
+    - Dashboard
+    - Posts
+- The app document / components structure
+  - App
+    - Master Page
+      - if => loggedIn == false
+        - Login
+          - Login Form
+      - if => loggedIn == true
+        - Sidebar => [Dashboard, Posts]
+        - Main Content Wrapper
+          - Header
+            - Header Title
+            - Logout Button
+            - Avatar
+          - Main Content
+            - if => Sidebar == Dashboard
+              - Dashboard
+            - if => Sidebar == Posts
+              - Posts
+- react states:
+  - user => object { username: '', name: '' }
+  - loggedIn => boolean
+  - selectedSidebar => integer
+- Constants:
+  - available users (dummy data) => check when logging in
+
+### Chapter 3 - Redux
+- Read this first!
+  - https://react-redux.js.org/tutorials/quick-start
+- Configure redux store and actions (modify index.js)
+- Save react states from previous chapter into global states using redux
+
+### Chapter 4 - API
+- Read this first!
+  - https://github.com/axios/axios#example
+- Use axios as http client to consume 3rd party web service
+- Web service: https://jsonplaceholder.typicode.com/
+- Modify Posts page, now it will contains two tables (its data are coming from 3rd party web service)
+  - Table [posts]
+    - https://jsonplaceholder.typicode.com/posts
+    - Fetch posts data when Posts page is rendered at the first time (using react hooks: useEffect)
+  - Table [comments]
+    - https://jsonplaceholder.typicode.com/post/{postId}/comments
+    - Fetch comments data when selected row in posts Table is updated
+
+
 ## Features
 
 - Based on Create React App [react-scripts v5](https://www.npmjs.com/package/react-scripts)
