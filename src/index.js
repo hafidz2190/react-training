@@ -1,19 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import App from './App';
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
-import configureStore from './stores/configure-store';
-
-const store = configureStore();
 
 const rootEl = document.getElementById('root');
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <App />,
   rootEl
 );
 
@@ -23,9 +17,7 @@ if (module.hot) {
     const NextApp = require('./App').default;
 
     ReactDOM.render(
-      <Provider store={store}>
-        <NextApp />
-      </Provider>,
+      <NextApp />,
       rootEl
     );
   });
