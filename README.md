@@ -73,6 +73,17 @@
     - https://jsonplaceholder.typicode.com/post/{postId}/comments
     - Fetch comments data when selected row in posts Table is updated
 
+### Chapter 5 - React Router
+- Read this first!
+  - https://reactrouter.com/docs/en/v6/getting-started/tutorial
+- Use React Router as client-side url routing
+- Routing requirements
+  - "/dashboard" => Dashboard page
+  - "/posts" => Posts page
+  - Logging out => redirect to "/"
+  - Logging in => redirect to current url in browser
+    - Example: if current browser url = "/posts", then after successfully logging in, redirect to Posts page
+    - If current browser url is not matched to any defined routes, then redirect to Dashboard page
 
 ## Features
 
