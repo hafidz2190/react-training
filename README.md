@@ -110,7 +110,9 @@
   - [axios](https://www.npmjs.com/package/axios): HTTP client
   - [http-proxy-middleware](https://www.npmjs.com/package/http-proxy-middleware): configure proxy middleware for outgoing HTTP request and WebSocket communication
   - [sass](https://www.npmjs.com/package/sass): css pre processor
-  - [react-app-rewired](https://www.npmjs.com/package/react-app-rewired): tweak the create-react-app webpack config(s) without using 'eject' and without creating a fork of the react-scripts.
+  - [react-app-rewired](https://www.npmjs.com/package/react-app-rewired): tweak the create-react-app webpack config(s) without using 'eject' and without creating a fork of the
+  - [react-router](https://www.npmjs.com/package/react-router): client side url routing
+react-scripts.
   - [customize-cra](https://www.npmjs.com/package/customize-cra): react-app-rewired helper.
   - [react-dnd](https://www.npmjs.com/package/react-dnd): enable to build complex drag and drop interfaces
   - [react-intl](https://www.npmjs.com/package/react-intl): internationalization
