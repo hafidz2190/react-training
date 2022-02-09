@@ -77,6 +77,7 @@
 - Read this first!
   - https://reactrouter.com/docs/en/v6/getting-started/tutorial
 - Use React Router as client-side url routing
+- `npm install react-router-dom@6 --save`
 - Routing requirements
   - "/dashboard" => Dashboard page
   - "/posts" => Posts page
@@ -84,6 +85,14 @@
   - Logging in => redirect to current url in browser
     - Example: if current browser url = "/posts", then after successfully logging in, redirect to Posts page
     - If current browser url is not matched to any defined routes, then redirect to Dashboard page
+
+### Chapter 6 - Local Storage Login Authentication
+- Read this first!
+  - https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+- Save login username to localStorage when successfully logging in
+- Clear login username from localStorage when logging out
+- Check on MasterPage component using useEffect if there is matching username saved in localStorage
+  - If there is a user found, redirect to correct route similar with requirement in previous chapter
 
 ## Features
 
