@@ -36,11 +36,6 @@ const MasterPage = ({
     setSelectedSidebarIndex(index);
   };
 
-  const onLoginSuccess = (loggedInUser) => {
-    setUser(loggedInUser);
-    setLoggedIn(true);
-  };
-
   const onLogout = () => {
     setUser({ username: '', name: '' });
     setLoggedIn(false);
@@ -50,7 +45,7 @@ const MasterPage = ({
     <div className="master-page">
       {
         !loggedIn ? (
-          <Login onLoginSuccess={onLoginSuccess} />
+          <Login />
         ) : (
           <>
             <Sidebar
