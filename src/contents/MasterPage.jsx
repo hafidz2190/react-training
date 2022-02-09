@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Login from './Login';
 import Posts from './Posts';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import * as sidebarIndexEnum from '../constants/sidebarIndexEnum';
+import sidebarItems from '../constants/sidebarItems';
 import * as appAction from '../stores/actions/appAction';
 import './MasterPage.scss';
 
@@ -30,43 +31,43 @@ const MasterPage = ({
   setLoggedIn,
   setSelectedSidebarIndex,
 }) => {
-  const sidebarItems = ['Dashboard', 'Posts'];
+  const navigate = useNavigate();
 
   const onSidebarChange = (index) => {
     setSelectedSidebarIndex(index);
-  };
-
-  const onLoginSuccess = (loggedInUser) => {
-    setUser(loggedInUser);
-    setLoggedIn(true);
+    navigate(sidebarItems[index].route);
   };
 
   const onLogout = () => {
     setUser({ username: '', name: '' });
     setLoggedIn(false);
+
+    navigate('/');
   };
 
   return (
     <div className="master-page">
       {
         !loggedIn ? (
-          <Login onLoginSuccess={onLoginSuccess} />
+          <Login />
         ) : (
           <>
             <Sidebar
-              items={sidebarItems}
+              items={sidebarItems.map((e) => e.label)}
               onChange={onSidebarChange}
               selectedIndex={selectedSidebarIndex}
             />
             <div className="main-content-wrapper">
               <Header
-                title={sidebarItems[selectedSidebarIndex]}
+                title={sidebarItems[selectedSidebarIndex].label}
                 name={user.name}
                 onLogout={onLogout}
               />
               <div className="main-content">
-                {selectedSidebarIndex === sidebarIndexEnum.DASHBOARD && <Dashboard />}
-                {selectedSidebarIndex === sidebarIndexEnum.POSTS && <Posts />}
+                <Routes>
+                  <Route path="dashboard" element={<Dashboard />} />
+                  <Route path="posts" element={<Posts />} />
+                </Routes>
               </div>
             </div>
           </>

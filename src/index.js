@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
@@ -12,7 +13,9 @@ const rootEl = document.getElementById('root');
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   rootEl
 );
@@ -24,7 +27,9 @@ if (module.hot) {
 
     ReactDOM.render(
       <Provider store={store}>
-        <NextApp />
+        <BrowserRouter>
+          <NextApp />
+        </BrowserRouter>
       </Provider>,
       rootEl
     );

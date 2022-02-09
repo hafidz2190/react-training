@@ -2,17 +2,23 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Button from '../components/Button';
 import TextField from '../components/TextField';
+import sidebarItems from '../constants/sidebarItems';
 import * as appAction from '../stores/actions/appAction';
 import './Login.scss';
 
 const mapDispatchToProps = (dispatch) => ({
   setUser: bindActionCreators(appAction.setUser, dispatch),
   setLoggedIn: bindActionCreators(appAction.setLoggedIn, dispatch),
+  setSelectedSidebarIndex: bindActionCreators(appAction.setSelectedSidebarIndex, dispatch),
 });
 
-const Login = ({ setUser, setLoggedIn }) => {
+const Login = ({ setUser, setLoggedIn, setSelectedSidebarIndex }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const availableUsers = [
     { username: 'user1', name: 'John Doe' },
     { username: 'user2', name: 'Bruce Wayne' },
@@ -31,6 +37,18 @@ const Login = ({ setUser, setLoggedIn }) => {
 
     setLoggedIn(true);
     setUser(user);
+
+    const sidebarItemTargetIndex = sidebarItems.findIndex((e) => e.route === location.pathname);
+
+    if (sidebarItemTargetIndex < 0) {
+      setSelectedSidebarIndex(0);
+      navigate(sidebarItems[0].route);
+
+      return;
+    }
+
+    setSelectedSidebarIndex(sidebarItemTargetIndex);
+    navigate(location.pathname);
   };
 
   return (
@@ -60,6 +78,7 @@ const Login = ({ setUser, setLoggedIn }) => {
 Login.propTypes = {
   setUser: PropTypes.func.isRequired,
   setLoggedIn: PropTypes.func.isRequired,
+  setSelectedSidebarIndex: PropTypes.func.isRequired,
 };
 
 Login.defaultProps = {
