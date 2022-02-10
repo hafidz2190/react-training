@@ -96,7 +96,7 @@
 
 ### Chapter 7 - Reuseable Table Component
 - ReusableTable component
-  - Built using [react-table](https://www.npmjs.com/package/react-table) and [react-loader-spiiner](https://www.npmjs.com/package/react-loader-spinner)
+  - Built using [react-table](https://www.npmjs.com/package/react-table) and [react-loader-spinner](https://www.npmjs.com/package/react-loader-spinner)
 - Update tables in Posts page using ReusableTable component (located in "/src/components/ReusableTable/" directory)
 ## Features
 
