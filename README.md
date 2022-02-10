@@ -94,6 +94,10 @@
 - Check on MasterPage component using useEffect if there is matching username saved in localStorage
   - If there is a user found, redirect to correct route similar with requirement in previous chapter
 
+### Chapter 7 - Reuseable Table Component
+- ReusableTable component
+  - Built using [react-table](https://www.npmjs.com/package/react-table) and [react-loader-spiiner](https://www.npmjs.com/package/react-loader-spinner)
+- Update tables in Posts page using ReusableTable component (located in "/src/components/ReusableTable/" directory)
 ## Features
 
 - Based on Create React App [react-scripts v5](https://www.npmjs.com/package/react-scripts)
