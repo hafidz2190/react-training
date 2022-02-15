@@ -4,11 +4,10 @@ import Login from './Login';
 import Posts from './Posts';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
+import sidebarItems from '../constants/sidebarItems';
 import './MasterPage.scss';
 
 const MasterPage = () => {
-  const sidebarItems = ['Dashboard', 'Posts'];
-
   const [user, setUser] = useState({ username: '', name: '' });
   const [loggedIn, setLoggedIn] = useState(false);
   const [selectedSidebarIndex, setSelectedSidebarIndex] = useState(0);
@@ -35,13 +34,13 @@ const MasterPage = () => {
         ) : (
           <>
             <Sidebar
-              items={sidebarItems}
+              items={sidebarItems.map((e) => e.label)}
               onChange={onSidebarChange}
               selectedIndex={selectedSidebarIndex}
             />
             <div className="main-content-wrapper">
               <Header
-                title={sidebarItems[selectedSidebarIndex]}
+                title={sidebarItems[selectedSidebarIndex].label}
                 name={user.name}
                 onLogout={onLogout}
               />
