@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Login from './Login';
@@ -14,26 +12,10 @@ import { isLoginTokenValid, removeLoginToken } from '../libs/loginToken';
 import * as appAction from '../stores/actions/appAction';
 import './MasterPage.scss';
 
-const mapStateToProps = (state) => ({
-  user: state.appStore.user,
-  loggedIn: state.appStore.loggedIn,
-  selectedSidebarIndex: state.appStore.selectedSidebarIndex,
-});
+const MasterPage = () => {
+  const { user, loggedIn, selectedSidebarIndex } = useSelector((state) => state.appStore);
+  const dispatch = useDispatch();
 
-const mapDispatchToProps = (dispatch) => ({
-  setUser: bindActionCreators(appAction.setUser, dispatch),
-  setLoggedIn: bindActionCreators(appAction.setLoggedIn, dispatch),
-  setSelectedSidebarIndex: bindActionCreators(appAction.setSelectedSidebarIndex, dispatch),
-});
-
-const MasterPage = ({
-  user,
-  loggedIn,
-  selectedSidebarIndex,
-  setUser,
-  setLoggedIn,
-  setSelectedSidebarIndex,
-}) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -50,33 +32,33 @@ const MasterPage = ({
       return;
     }
 
-    setUser(tokenUser);
-    setLoggedIn(true);
+    dispatch(appAction.setUser(tokenUser));
+    dispatch(appAction.setLoggedIn(true));
 
     const sidebarItemTargetIndex = sidebarItems.findIndex((e) => e.route === location.pathname);
 
     if (sidebarItemTargetIndex < 0) {
-      setSelectedSidebarIndex(0);
+      dispatch(appAction.setSelectedSidebarIndex(0));
       navigate(sidebarItems[0].route);
 
       return;
     }
 
-    setSelectedSidebarIndex(sidebarItemTargetIndex);
+    dispatch(appAction.setSelectedSidebarIndex(sidebarItemTargetIndex));
     navigate(location.pathname);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSidebarChange = (index) => {
-    setSelectedSidebarIndex(index);
+    dispatch(appAction.setSelectedSidebarIndex(index));
     navigate(sidebarItems[index].route);
   };
 
   const onLogout = () => {
     removeLoginToken();
 
-    setUser({ username: '', name: '' });
-    setLoggedIn(false);
+    dispatch(appAction.setUser({ username: '', name: '' }));
+    dispatch(appAction.setLoggedIn(false));
 
     navigate('/');
   };
@@ -113,16 +95,4 @@ const MasterPage = ({
   );
 };
 
-MasterPage.propTypes = {
-  user: PropTypes.object.isRequired,
-  loggedIn: PropTypes.bool.isRequired,
-  selectedSidebarIndex: PropTypes.number.isRequired,
-  setUser: PropTypes.func.isRequired,
-  setLoggedIn: PropTypes.func.isRequired,
-  setSelectedSidebarIndex: PropTypes.func.isRequired,
-};
-
-MasterPage.defaultProps = {
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MasterPage);
+export default MasterPage;
