@@ -1,17 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import ReusableTable from '../components/ReusableTable/ReusableTable';
 import Table from '../components/Table';
 import * as postsBusiness from '../stores/business/postsBusiness';
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchPosts: bindActionCreators(postsBusiness.fetchPosts, dispatch),
-  fetchComments: bindActionCreators(postsBusiness.fetchComments, dispatch),
-});
+const Posts = () => {
+  const dispatch = useDispatch();
 
-const Posts = ({ fetchPosts, fetchComments }) => {
   const pageSize = 30;
 
   const [commentsData, setCommentsData] = useState([]);
@@ -37,7 +32,7 @@ const Posts = ({ fetchPosts, fetchComments }) => {
     const init = async () => {
       setIsLoading(true);
 
-      const data = await fetchPosts();
+      const data = await dispatch(postsBusiness.fetchPosts());
 
       setPostsData(data.map((e) => ({
         ...e,
@@ -50,7 +45,7 @@ const Posts = ({ fetchPosts, fetchComments }) => {
     };
 
     init();
-  }, [fetchPosts]);
+  }, [dispatch]);
 
   useEffect(() => {
     simulateLoading();
@@ -70,14 +65,14 @@ const Posts = ({ fetchPosts, fetchComments }) => {
       }
       const postId = postsData[index].id;
 
-      const data = await fetchComments(postId);
+      const data = await dispatch(postsBusiness.fetchComments(postId));
 
       setCommentsData(data);
     };
 
     process();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchComments, selectedRowIds]);
+  }, [selectedRowIds]);
 
   const setPageIndexHandler = (e) => {
     simulateLoading();
@@ -181,12 +176,4 @@ const Posts = ({ fetchPosts, fetchComments }) => {
   );
 };
 
-Posts.propTypes = {
-  fetchPosts: PropTypes.func.isRequired,
-  fetchComments: PropTypes.func.isRequired,
-};
-
-Posts.defaultProps = {
-};
-
-export default connect(null, mapDispatchToProps)(Posts);
+export default Posts;
