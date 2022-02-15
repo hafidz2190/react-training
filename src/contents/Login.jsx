@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Button from '../components/Button';
 import TextField from '../components/TextField';
+import availableUsers from '../constants/availableUsers';
 import sidebarItems from '../constants/sidebarItems';
 import * as appAction from '../stores/actions/appAction';
 import './Login.scss';
@@ -12,12 +13,6 @@ const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-
-  const availableUsers = [
-    { username: 'user1', name: 'John Doe' },
-    { username: 'user2', name: 'Bruce Wayne' },
-    { username: 'user3', name: 'Muhammad Ali' },
-  ];
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
