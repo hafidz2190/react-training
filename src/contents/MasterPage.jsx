@@ -3,10 +3,10 @@ import Dashboard from './Dashboard';
 import Posts from './Posts';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
+import sidebarItems from '../constants/sidebarItems';
 import './MasterPage.scss';
 
 const MasterPage = () => {
-  const sidebarItems = ['Dashboard', 'Posts'];
   const name = 'John Doe';
 
   const [selectedSidebarIndex, setSelectedSidebarIndex] = useState(0);
@@ -18,13 +18,13 @@ const MasterPage = () => {
   return (
     <div className="master-page">
       <Sidebar
-        items={sidebarItems}
+        items={sidebarItems.map((e) => e.label)}
         onChange={onSidebarChange}
         selectedIndex={selectedSidebarIndex}
       />
       <div className="main-content-wrapper">
         <Header
-          title={sidebarItems[selectedSidebarIndex]}
+          title={sidebarItems[selectedSidebarIndex].label}
           name={name}
         />
         <div className="main-content">
