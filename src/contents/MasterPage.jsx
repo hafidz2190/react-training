@@ -5,14 +5,13 @@ import Posts from './Posts';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import * as sidebarIndexEnum from '../constants/sidebarIndexEnum';
+import sidebarItems from '../constants/sidebarItems';
 import * as appAction from '../stores/actions/appAction';
 import './MasterPage.scss';
 
 const MasterPage = () => {
   const { user, loggedIn, selectedSidebarIndex } = useSelector((state) => state.appStore);
   const dispatch = useDispatch();
-
-  const sidebarItems = ['Dashboard', 'Posts'];
 
   const onSidebarChange = (index) => {
     dispatch(appAction.setSelectedSidebarIndex(index));
@@ -31,13 +30,13 @@ const MasterPage = () => {
         ) : (
           <>
             <Sidebar
-              items={sidebarItems}
+              items={sidebarItems.map((e) => e.label)}
               onChange={onSidebarChange}
               selectedIndex={selectedSidebarIndex}
             />
             <div className="main-content-wrapper">
               <Header
-                title={sidebarItems[selectedSidebarIndex]}
+                title={sidebarItems[selectedSidebarIndex].label}
                 name={user.name}
                 onLogout={onLogout}
               />
