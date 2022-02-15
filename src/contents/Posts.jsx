@@ -1,36 +1,31 @@
 import { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import Table from '../components/Table';
 import * as postsBusiness from '../stores/business/postsBusiness';
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchPosts: bindActionCreators(postsBusiness.fetchPosts, dispatch),
-  fetchComments: bindActionCreators(postsBusiness.fetchComments, dispatch),
-});
+const Posts = () => {
+  const dispatch = useDispatch();
 
-const Posts = ({ fetchPosts, fetchComments }) => {
   const [postsData, setPostsData] = useState([]);
   const [commentsData, setCommentsData] = useState([]);
   const [selectedRowIndex, setSelectedRowIndex] = useState(null);
 
   useEffect(() => {
     const init = async () => {
-      const data = await fetchPosts();
+      const data = await dispatch(postsBusiness.fetchPosts());
 
       setPostsData(data);
     };
 
     init();
-  }, [fetchPosts]);
+  }, [dispatch]);
 
   const onRowClick = async (index) => {
     setSelectedRowIndex(index);
 
     const postId = postsData[index].id;
 
-    const data = await fetchComments(postId);
+    const data = await dispatch(postsBusiness.fetchComments(postId));
 
     setCommentsData(data);
   };
@@ -81,12 +76,4 @@ const Posts = ({ fetchPosts, fetchComments }) => {
   );
 };
 
-Posts.propTypes = {
-  fetchPosts: PropTypes.func.isRequired,
-  fetchComments: PropTypes.func.isRequired,
-};
-
-Posts.defaultProps = {
-};
-
-export default connect(null, mapDispatchToProps)(Posts);
+export default Posts;

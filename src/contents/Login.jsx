@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Button from '../components/Button';
 import TextField from '../components/TextField';
@@ -9,13 +7,9 @@ import sidebarItems from '../constants/sidebarItems';
 import * as appAction from '../stores/actions/appAction';
 import './Login.scss';
 
-const mapDispatchToProps = (dispatch) => ({
-  setUser: bindActionCreators(appAction.setUser, dispatch),
-  setLoggedIn: bindActionCreators(appAction.setLoggedIn, dispatch),
-  setSelectedSidebarIndex: bindActionCreators(appAction.setSelectedSidebarIndex, dispatch),
-});
+const Login = () => {
+  const dispatch = useDispatch();
 
-const Login = ({ setUser, setLoggedIn, setSelectedSidebarIndex }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -35,19 +29,19 @@ const Login = ({ setUser, setLoggedIn, setSelectedSidebarIndex }) => {
       return;
     }
 
-    setLoggedIn(true);
-    setUser(user);
+    dispatch(appAction.setLoggedIn(true));
+    dispatch(appAction.setUser(user));
 
     const sidebarItemTargetIndex = sidebarItems.findIndex((e) => e.route === location.pathname);
 
     if (sidebarItemTargetIndex < 0) {
-      setSelectedSidebarIndex(0);
+      dispatch(appAction.setSelectedSidebarIndex(0));
       navigate(sidebarItems[0].route);
 
       return;
     }
 
-    setSelectedSidebarIndex(sidebarItemTargetIndex);
+    dispatch(appAction.setSelectedSidebarIndex(sidebarItemTargetIndex));
     navigate(location.pathname);
   };
 
@@ -75,13 +69,4 @@ const Login = ({ setUser, setLoggedIn, setSelectedSidebarIndex }) => {
   );
 };
 
-Login.propTypes = {
-  setUser: PropTypes.func.isRequired,
-  setLoggedIn: PropTypes.func.isRequired,
-  setSelectedSidebarIndex: PropTypes.func.isRequired,
-};
-
-Login.defaultProps = {
-};
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;
