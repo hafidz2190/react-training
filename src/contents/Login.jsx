@@ -2,15 +2,10 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../components/Button';
 import TextField from '../components/TextField';
+import availableUsers from '../constants/availableUsers';
 import './Login.scss';
 
 const Login = ({ onLoginSuccess }) => {
-  const availableUsers = [
-    { username: 'user1', name: 'John Doe' },
-    { username: 'user2', name: 'Bruce Wayne' },
-    { username: 'user3', name: 'Muhammad Ali' },
-  ];
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
