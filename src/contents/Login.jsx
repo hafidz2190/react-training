@@ -1,18 +1,13 @@
 import { useState } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import Button from '../components/Button';
 import TextField from '../components/TextField';
 import * as appAction from '../stores/actions/appAction';
 import './Login.scss';
 
-const mapDispatchToProps = (dispatch) => ({
-  setUser: bindActionCreators(appAction.setUser, dispatch),
-  setLoggedIn: bindActionCreators(appAction.setLoggedIn, dispatch),
-});
+const Login = () => {
+  const dispatch = useDispatch();
 
-const Login = ({ setUser, setLoggedIn }) => {
   const availableUsers = [
     { username: 'user1', name: 'John Doe' },
     { username: 'user2', name: 'Bruce Wayne' },
@@ -29,8 +24,8 @@ const Login = ({ setUser, setLoggedIn }) => {
       return;
     }
 
-    setLoggedIn(true);
-    setUser(user);
+    dispatch(appAction.setLoggedIn(true));
+    dispatch(appAction.setUser(user));
   };
 
   return (
@@ -56,13 +51,4 @@ const Login = ({ setUser, setLoggedIn }) => {
     </div>
   );
 };
-
-Login.propTypes = {
-  setUser: PropTypes.func.isRequired,
-  setLoggedIn: PropTypes.func.isRequired,
-};
-
-Login.defaultProps = {
-};
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;
